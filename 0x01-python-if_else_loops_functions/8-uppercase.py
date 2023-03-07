@@ -2,6 +2,6 @@
 
 def uppercase(s):
     for c in s:
-        print("{}".format(chr(ord(c) - 32) if c.isalpha() and c.islower() else c), end="")
+        valid = c.isalpha() and c.islower()
+        print("{}".format(chr(ord(c) - 32) if valid else c), end="")
     print()
-
