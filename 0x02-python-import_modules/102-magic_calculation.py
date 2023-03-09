@@ -1,4 +1,4 @@
-from dis import dis
+#!/usr/bin/python3
 
 def magic_calulation(a, b):
     from magic_calulation_102 import add, sub
@@ -10,5 +10,3 @@ def magic_calulation(a, b):
         return c
     else:
         return sub(a, b)
-
-dis(magic_calulation)
