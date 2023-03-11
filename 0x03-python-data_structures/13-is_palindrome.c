@@ -30,32 +30,25 @@ listint_t *add_nodeint(listint_t **head, const int n)
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *list = NULL;
 	listint_t *p = *head;
-	listint_t *t, *f;
+	int i, j, count = 0;
+	int arr[5000];
 
 	if (*head == NULL)
 		return (1);
 
 	while (p)
 	{
-		add_nodeint(&list, p->n);
+		arr[count] = p->n;
 		p = p->next;
+		count++;
 	}
-	p = *head;
-	t = list;
-	f = list;
-	while (p)
+	j = count - 1;
+	for (i = 0; i < count / 2; i++, j--)
 	{
-		if (p->n != t->n)
-		{
-			free_listint(t);
+		if (arr[i] != arr[j])
 			return (0);
-		}
-		p = p->next;
-		t = t->next;
-		free(f);
-		f = t;
 	}
+	
 	return (1);
 }
