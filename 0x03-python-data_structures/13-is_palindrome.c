@@ -2,53 +2,38 @@
 
 
 /**
- * add_nodeint - insert a new node at the begining of a list
- * @head: a pointer to the head of the list
- * @n: the integer to set for the new element
- * Return: a pointer to the new node
+ * palindrome- checks if a linked list is a palindrome by recursion
+ * the idea is to trace the list to it's end first by recursion while
+ * maintaining the head and then compare the begining with the end
+ * if one of the numbers didn't match then it's not a palindrome
+ * @left: a pointer to the head (left side) of the list
+ * @right: a pointer to the right side of the list
+ * Return: 1 if it's a palindrome 0 if not
  */
-
-listint_t *add_nodeint(listint_t **head, const int n)
+int palindrome(listint_t **left, listint_t *right)
 {
-	listint_t *node = malloc(sizeof(listint_t));
+	int check;
 
-	if (node == NULL)
-		return (NULL);
+	if (right == NULL)
+		return (1);
 
-	node->n = (int) n;
-	node->next = *head;
-	*head = node;
+	check = palindrome(left, right->next);
 
-	return (node);
+	if (check == 0)
+		return (0);
+
+	check = (*left)->n == right->n;
+	*left = (*left)->next;
+
+	return (check);
 }
 
 /**
- * is_palindrome - checks if the list is a palindrome
- * @head: a pointer to the head of the list
- * Return: 1 if is palindrome 0 if not
+ * is_palindrome - uses the function palindrome
+ * @head: a pointer to a head of a linked list
+ * Return: 1 if palindrome 0 if not
  */
-
 int is_palindrome(listint_t **head)
 {
-	listint_t *p = *head;
-	int i, j, count = 0;
-	int arr[5000];
-
-	if (*head == NULL)
-		return (1);
-
-	while (p)
-	{
-		arr[count] = p->n;
-		p = p->next;
-		count++;
-	}
-	j = count - 1;
-	for (i = 0; i < count / 2; i++, j--)
-	{
-		if (arr[i] != arr[j])
-			return (0);
-	}
-	
-	return (1);
+	return (palindrome(head, *head));
 }
