@@ -2,4 +2,4 @@
 
 
 def search_replace(my_list, search, replace):
-    return [89 if n == 2 else n for n in my_list]
+    return [replace if n == search else n for n in my_list]
