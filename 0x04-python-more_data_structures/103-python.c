@@ -14,8 +14,8 @@ void print_python_list(PyObject *p)
 	printf("[*] Allocated = %i\n", allocated);
 	for (i = 0; i < size; i++)
 	{
-		item = PyList_GetItem(p, i);
-		type = Py_TYPE(item);
+		item = PyList_GET_ITEM(p, i);
+		type = (PyTypeObject *)PyObject_Type(item);
 		printf("Element %i: %s\n", i, type->tp_name);
 		if (strcmp(type->tp_name, "bytes") == 0)
 			print_python_bytes(item);
