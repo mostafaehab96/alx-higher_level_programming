@@ -9,7 +9,7 @@ def roman_to_int(roman_string):
     p_value = 0
     
     for c in roman_string:
-        c_value = roman_string.get(c, 0)
+        c_value = romans.get(c, 0)
         if c_value <= p_value:
             result += p_value
         else:
