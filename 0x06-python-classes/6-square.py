@@ -50,6 +50,9 @@ class Square:
 
     def my_print(self):
         """prints the square on the screen using # with postion of (x, y)."""
-        print("\n" * self.__position[1], end="")
-        line = " " * self.__position[0] + "#" * self.__size + "\n"
-        print(line * self.__size, end="" if self.__size > 0 else "\n")
+        if self.__size > 0:
+            print("\n" * self.__position[1], end="")
+            line = " " * self.__position[0] + "#" * self.__size + "\n"
+            print(line * self.__size, end="")
+        else:
+            print()
