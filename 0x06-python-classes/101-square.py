@@ -57,7 +57,7 @@ class Square:
         else:
             print()
 
-    def __str__(self):
+    def __repr__(self):
         """returns the string representing the square."""
         if self.__size > 0:
             y = "\n" * self.__position[1]
