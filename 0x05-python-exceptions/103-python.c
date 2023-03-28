@@ -86,6 +86,6 @@ void print_python_float(PyObject *p)
 	if (value == (int)value)
 		printf("  value: %.1lf\n", value);
 	else
-		printf("  value: %g\n", value);
+		printf("  value: %.16g\n", value);
 }
 
