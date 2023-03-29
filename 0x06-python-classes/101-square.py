@@ -64,4 +64,4 @@ class Square:
             line = " " * self.__position[0] + "#" * self.__size + "\n"
             return y + (line * self.__size)[0: -1]
         else:
-            return "\n"
+            return ""
