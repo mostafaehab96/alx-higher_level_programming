@@ -73,6 +73,7 @@ void print_python_bytes(PyObject *p)
 void print_python_float(PyObject *p)
 {
 	double value;
+	char *string = NULL;
 
 	printf("[.] float object info\n");
 
@@ -83,9 +84,7 @@ void print_python_float(PyObject *p)
 	}
 		
 	value = PyFloat_AsDouble(p);
-	if (value == (int)value)
-		printf("  value: %.1lf\n", value);
-	else
-		printf("  value: %.16g\n", value);
+	string =  PyOS_double_to_string(value, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
+	printf("  value: %s\n", string);
 }
 
