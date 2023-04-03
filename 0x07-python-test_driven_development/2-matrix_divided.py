@@ -4,7 +4,7 @@
 
 
 def matrix_divided(matrix, div):
-    """Function that devides a matrix which is 
+    """Function that devides a matrix which is
     a list of lists of integers or floats by div.
     """
     is_matrix = False
@@ -12,11 +12,12 @@ def matrix_divided(matrix, div):
     if matrix is not None:
         is_matrix = all([type(row) is list for row in matrix])
         if is_matrix:
-            is_all_int = all([all([type(cell) is int or type(cell) is float\
-                    for cell in row]) for row in matrix])
-    
+            is_all_int = (all([all([type(cell) is int or type(cell) is float
+                                    for cell in row]) for row in matrix]))
+
     if not is_matrix or not is_all_int:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError("matrix must be a matrix (list of lists) "
+                        "of integers/floats")
 
     size = len(matrix[0])
     same_size = all([len(row) == size for row in matrix])
@@ -29,6 +30,3 @@ def matrix_divided(matrix, div):
         raise ZeroDivisionError("division by zero")
 
     return [[round(num / div, 2) for num in row] for row in matrix]
-
-    
-
