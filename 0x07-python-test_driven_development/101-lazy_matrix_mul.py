@@ -42,4 +42,4 @@ def lazy_matrix_mul(m_a, m_b):
     if cols_a != rows_b:
         raise ValueError("m_a and m_b can't be multiplied")
 
-    return matmul(m_a, m_b).tolist()
+    return matmul(m_a, m_b)
