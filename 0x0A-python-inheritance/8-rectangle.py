@@ -10,6 +10,7 @@ class Rectangle(BaseGeometry):
     """Simple Rectangle class."""
 
     def __init__(self, width, height):
+        """intialized with width and height must be int."""
         self.integer_validator("width", width)
         self.integer_validator("height", height)
         self.__width = width
