@@ -38,7 +38,7 @@ TypeError: m_b must be a list of lists
 >>> matrix_mul([[1, "2"]], [[1, 2], [3, 4]])
 Traceback (most recent call last):
 	...
-TypeError: [[1, '2']] should contain only integers or floats
+TypeError: m_a should contain only integers or floats
 >>> matrix_mul([[1, 2], [3]], [[1, 2], [3, 4]])
 Traceback (most recent call last):
 	...

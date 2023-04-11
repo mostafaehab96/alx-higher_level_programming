@@ -25,7 +25,7 @@ def validate(matrix, name):
     if len(matrix) == 0 or any([len(row) == 0 for row in matrix]):
         raise ValueError(f"{name} can't be empty")
     if not is_all_num:
-        raise TypeError(f"{matrix} should contain only integers or floats")
+        raise TypeError(f"{name} should contain only integers or floats")
 
     size = len(matrix[0])
     if not all([len(row) == size for row in matrix]):
