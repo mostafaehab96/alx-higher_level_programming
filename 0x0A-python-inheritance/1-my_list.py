@@ -4,7 +4,7 @@
 
 
 class MyList(list):
-    """Class inherits form list
+    """Class inherits a list
     and have a print_sorted method.
     """
 
