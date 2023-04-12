@@ -15,14 +15,6 @@ class Student:
         """Returns a dict representation of class."""
         if (attrs and type(attrs) is list and
                 all([type(i) is str for i in attrs])):
-            class_dict = {}
-            for attr in attrs:
-                try:
-                    class_dict[attr] = getattr(self, attr)
-                except AttributeError:
-                    pass
-            return class_dict
-        return {"first_name": self.first_name,
-                "last_name": self.last_name,
-                "age": self.age
-                }
+            return {attr: getattr(self, attr)
+                    for attr in attrs if hasattr(self, attr)}
+        return self.__dict__
