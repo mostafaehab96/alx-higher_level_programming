@@ -78,8 +78,9 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        """Displays the rectangle in form of #."""
-        line = "#" * self.__width + '\n'
+        """Displays the rectangle in form of #, taking care of x and y."""
+        print("\n" * self.__y, end="")
+        line = " " * self.__x + "#" * self.__width + '\n'
         print(line * self.__height, end="")
 
     def __str__(self):
