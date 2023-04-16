@@ -94,9 +94,28 @@ class Rectangle(Base):
         """
         if len(args) == 0:
             for k, v in kwargs.items():
-                if hasattr(self, k):
-                    setattr(self, k, v)
+                if k == 'id':
+                    self.id = v
+                if k == 'width':
+                    self.width = v
+                if k == 'height':
+                    self.height = v
+                if k == 'x':
+                    self.x = v
+                if k == 'y':
+                    self.y = v
             return
-        attrs = list(self.__dict__.keys())
+        attrs = ['id', 'width', 'height', 'x', 'y']
         for i in range(len(args)):
-            setattr(self, attrs[i], args[i])
+            k = attrs[i]
+            v = args[i]
+            if k == 'id':
+                self.id = v
+            if k == 'width':
+                self.width = v
+            if k == 'height':
+                self.height = v
+            if k == 'x':
+                self.x = v
+            if k == 'y':
+                self.y = v
