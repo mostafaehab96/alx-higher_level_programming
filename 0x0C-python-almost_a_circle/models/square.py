@@ -12,19 +12,17 @@ class Square(Rectangle):
         Rectangle class initializer.
         """
         super().__init__(size, size, x, y, id)
-        self.size = size
 
     @property
     def size(self):
         """Getter for the size."""
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
         """Setter for the size."""
         self.width = value
         self.height = value
-        self.__size = value
 
     def __str__(self):
         """Overriding the str method in Rectangle class
