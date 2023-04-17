@@ -30,7 +30,7 @@ class Square(Rectangle):
         """Overriding the str method in Rectangle class
         which returns the str representation of Square.
         """
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
 
     def update(self, *args, **kwargs):
         """Updates the Square instance with args or kwargs."""
