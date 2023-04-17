@@ -2,6 +2,7 @@
 
 """Defining simple Base class."""
 import json
+import csv
 
 
 class Base:
@@ -67,3 +68,39 @@ class Base:
                 objs_list.append(cls.create(**dic))
             file.close()
             return objs_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Saves a list of objects into a CSV file."""
+        filename = f"{cls.__name__}.csv"
+        if cls.__name__ == "Rectangle":
+            fieldnames = ["id", "width", "height", 'x', 'y']
+        else:
+            fieldnames = ["id", "size", 'x', 'y']
+        dict_list = []
+        for obj in list_objs:
+            dict_list.append(obj.to_dictionary())
+        with open(filename, 'w') as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(dict_list)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Reads a CSV file and return a list of objects."""
+        filename = f"{cls.__name__}.csv"
+
+        try:
+            with open(filename, 'r') as file:
+                reader = csv.DictReader(file)
+                dict_list = []
+                for row in reader:
+                    dic = {k: int(v) for k, v in row.items()}
+                    dict_list.append(dic)
+
+                list_objs = []
+                for dic in dict_list:
+                    list_objs.append(cls.create(**dic))
+                return list_objs
+        except FileNotFoundError:
+            return []
