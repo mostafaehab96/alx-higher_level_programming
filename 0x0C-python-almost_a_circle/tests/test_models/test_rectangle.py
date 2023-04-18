@@ -2,8 +2,10 @@
 
 """Unit test for testing the Rectangle class."""
 import unittest
+from unittest.mock import patch
 from models.rectangle import Rectangle
 from models.base import Base
+from io import StringIO
 
 
 class TestRectangle(unittest.TestCase):
@@ -93,3 +95,21 @@ class TestRectangle(unittest.TestCase):
         self.assertRaises(ValueError, r1.update, 89, 1, 0)
         self.assertRaises(ValueError, r1.update, 89, 1, 1, -1)
         self.assertRaises(ValueError, r1.update, 89, 1, 1, -1, -1)
+
+    def test_display(self):
+        """Testng the display method in Rectangle."""
+        r1 = Rectangle(1, 1)
+        r2 = Rectangle(1, 1, 1)
+        r3 = Rectangle(1, 1, 1, 1)
+        output = StringIO()
+
+        recs = [r1, r2, r3]
+        outputs = ['#\n', " #\n", "\n #\n"]
+        for i in range(3):
+            with patch("sys.stdout", new=output):
+                recs[i].display()
+
+            output_value = output.getvalue()
+            self.assertEqual(outputs[i], output_value)
+            output.truncate(0)
+            output.seek(0)
