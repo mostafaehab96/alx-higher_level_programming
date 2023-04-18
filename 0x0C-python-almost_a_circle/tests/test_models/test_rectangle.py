@@ -9,14 +9,17 @@ from models.base import Base
 class TestRectangle(unittest.TestCase):
     """A class for testing Rectangle class."""
 
+    def setUp(self):
+        """For testing the id."""
+        Base._Base__nb_objects = 0
+
     def test_inheritence(self):
         """Test inheritence of Rectangle from Base."""
         self.assertTrue(issubclass(Rectangle, Base))
 
     def test_id(self):
         """Tests the id of the rectangle class."""
-        last_id = Base().id
-        self.assertEqual(Rectangle(2, 2).id, last_id + 1)
+        self.assertEqual(Rectangle(2, 2).id, 1)
         self.assertEqual(Rectangle(2, 10, 0, 0, 12).id, 12)
 
     def test_attributes(self):
@@ -45,11 +48,15 @@ class TestRectangle(unittest.TestCase):
         self.assertRaises(TypeError, Rectangle, 1, 1, 1, True)
         self.assertRaises(TypeError, Rectangle, 1, 1, 1, (1,))
         self.assertRaises(TypeError, Rectangle, 1, 1, 1, [1])
-        r1 = Rectangle(1, 1, 1, 1)
+        r1 = Rectangle(1, 1)
         self.assertEqual(r1.width, 1)
         self.assertEqual(r1.height, 1)
+        r1 = Rectangle(1, 1, 1)
         self.assertEqual(r1.x, 1)
+        r1 = Rectangle(1, 1, 1, 1)
         self.assertEqual(r1.y, 1)
+        with self.assertRaises(TypeError):
+            Rectangle(1, 1, 1, 1, 1, 1)
 
     def test_area(self):
         """Testing area function in Rectangle class."""
