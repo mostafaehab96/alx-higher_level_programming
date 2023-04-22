@@ -113,3 +113,10 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(outputs[i], output_value)
             output.truncate(0)
             output.seek(0)
+
+    def test_to_dict(self):
+        """Testing the conversion of rectangle to dictionary"""
+        r1 = Rectangle(10, 2, 1, 9)
+        r1_dictionary = r1.to_dictionary()
+        same_dict = {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10}
+        self.assertEqual(r1_dictionary, same_dict)
