@@ -5,10 +5,16 @@ from models.square import Square
 from models.rectangle import Rectangle
 from models.base import Base
 import unittest
+from unittest.mock import patch
+from io import StringIO
 
 
 class TestSquare(unittest.TestCase):
     """A class for testing Square class."""
+
+    def setUp(self):
+        """For testing the id."""
+        Base._Base__nb_objects = 0
 
     def test_inheritence(self):
         """Testing Square inherits from Rectangle."""
@@ -16,8 +22,7 @@ class TestSquare(unittest.TestCase):
 
     def test_id(self):
         """Testing the id of the Square instance."""
-        last_id = Base().id
-        self.assertEqual(Square(2).id, last_id + 1)
+        self.assertEqual(Square(2).id, 1)
         self.assertEqual(Square(2, 0, 0, 89).id, 89)
 
     def test_init(self):
@@ -84,3 +89,28 @@ class TestSquare(unittest.TestCase):
         self.assertRaises(ValueError, s1.update, size=0)
         self.assertRaises(ValueError, s1.update, x=-1)
         self.assertRaises(ValueError, s1.update, y=-1)
+
+    def test_display(self):
+        """Testng the display method in Square"""
+        r1 = Square(1)
+        r2 = Square(1, 1)
+        r3 = Square(1, 1, 1)
+        output = StringIO()
+
+        recs = [r1, r2, r3]
+        outputs = ['#\n', " #\n", "\n #\n"]
+        for i in range(3):
+            with patch("sys.stdout", new=output):
+                recs[i].display()
+
+            output_value = output.getvalue()
+            self.assertEqual(outputs[i], output_value)
+            output.truncate(0)
+            output.seek(0)
+
+    def test_to_dict(self):
+        """Testing the conversion of rectangle to dictionary"""
+        s1 = Square(10, 2, 1)
+        s1_dictionary = s1.to_dictionary()
+        same_dict = {'id': 1, 'x': 2, 'size': 10, 'y': 1}
+        self.assertEqual(s1_dictionary, same_dict)
