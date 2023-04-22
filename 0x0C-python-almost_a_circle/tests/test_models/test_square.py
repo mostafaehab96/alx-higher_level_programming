@@ -28,7 +28,7 @@ class TestSquare(unittest.TestCase):
     def test_init(self):
         """Testing initializer of the Square class."""
         self.assertRaises(TypeError, Square)
-        self.assertRaises(TypeError, Square, "s",
+        self.assertRaises(TypeError, Square, "1",
                           msg="width must be an integer")
         self.assertRaises(TypeError, Square, True,
                           msg="width must be an integer")
@@ -38,6 +38,7 @@ class TestSquare(unittest.TestCase):
                           msg="width must be an integer")
         self.assertRaises(TypeError, Square, 1.5,
                           msg="width must be an integer")
+        self.assertRaises(ValueError, Square, -1)
         self.assertRaises(ValueError, Square, 0)
         self.assertRaises(TypeError, Square, 1, "s")
         self.assertRaises(TypeError, Square, 1, True)
