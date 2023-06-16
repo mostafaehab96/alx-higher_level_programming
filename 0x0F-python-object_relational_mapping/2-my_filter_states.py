@@ -22,10 +22,10 @@ if __name__ == "__main__":
     sql = """
     SElECT *
     FROM states
-    WHERE name = %s
+    WHERE name LIKE BINARY '{}'
     ORDER BY id;
     """
-    cursor.execute(sql, (search_state,))
+    cursor.execute(sql.format(search_state))
     # Readingt the data
     data = cursor.fetchall()
     for row in data:
