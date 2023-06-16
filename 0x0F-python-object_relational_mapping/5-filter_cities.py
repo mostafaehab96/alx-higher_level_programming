@@ -33,4 +33,5 @@ if __name__ == "__main__":
     i = 0
     for row in data:
         i += 1
-        print(f"{row[0]}", end=", " if i < len(data) else "\n")
+        print(f"{row[0]}", end=", " if i < len(data) else "")
+    print()
