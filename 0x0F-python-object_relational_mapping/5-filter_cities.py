@@ -20,11 +20,11 @@ if __name__ == "__main__":
     cursor = db.cursor()
     # Execute the sql
     sql = """
-    SElECT name
+    SElECT cities.name
     FROM cities
-    WHERE state_id = (
-        SELECT id FROM states
-        WHERE name LIKE BINARY %s)
+    JOIN states
+    ON cities.state_id = states.id
+    WHERE states.name = %s
     ORDER BY cities.id;
     """
     cursor.execute(sql, (search_state,))
