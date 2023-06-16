@@ -22,10 +22,10 @@ if __name__ == "__main__":
     sql = """
     SElECT *
     FROM states
-    WHERE name = '{}'
+    WHERE name = %s
     ORDER BY id;
-    """.format(search_state)
-    cursor.execute(sql)
+    """
+    cursor.execute(sql, (search_state,))
     # Readingt the data
     data = cursor.fetchall()
     for row in data:
