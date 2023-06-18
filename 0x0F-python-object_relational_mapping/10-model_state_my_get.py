@@ -25,4 +25,4 @@ if __name__ == "__main__":
     if row is None:
         print("Not found")
     else:
-        print(f"{row.State.id}: {row.State.name}")
+        print(f"{row.State.id}")
