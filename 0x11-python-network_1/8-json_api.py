@@ -8,19 +8,19 @@ if __name__ == "__main__":
     import sys
     import requests
 
-    q = sys.argv[1] if len(sys.argv) > 1 else ""
+    q = sys.argv[1] if len(sys.argv) > 1 else None
     url = "http://0.0.0.0:5000/search_user"
     params = {"q": q}
 
-    response = requests.post(url, data=params)
+    if q:
+        response = requests.post(url, data=params)
+    else:
+        response = requests.post(url)
     try:
         data = response.json()
         if len(data) == 0:
             print("No result")
         else:
             print(f"[{data.get('id')}] {data.get('name')}")
-    except JSONDecodeError:
-        if response.status_code == 204:
-            print("No result")
-        else:
-            print("Not a valid JSON")
+    except Exception:
+        print("Not a valid JSON")
