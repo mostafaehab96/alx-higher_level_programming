@@ -18,7 +18,9 @@ if (url) {
             completed[todo.userId] = completed[todo.userId] ? ++completed[todo.userId] : 1;
           }
         }
-        console.log(completed);
+        if (completed) {
+          console.log(completed);
+        }
       } catch (error) {
         // Do nothing
       }
