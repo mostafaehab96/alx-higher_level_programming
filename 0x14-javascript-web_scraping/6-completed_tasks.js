@@ -7,7 +7,7 @@ const request = require('request');
 if (url) {
   request(url, (err, response, body) => {
     if (err) {
-    // Do nothing
+      console.log(err);
     }
     if (response) {
       try {
@@ -15,12 +15,11 @@ if (url) {
         const completed = {};
         for (const todo of todos) {
           if (todo.completed) {
-            completed[todo.userId] = completed[todo.userId] ? ++completed[todo.userId] : 1;
+            if (!completed[todo.userId]) completed[todo.userId] = 1;
+            else completed[todo.userId] += 1;
           }
         }
-        if (completed) {
-          console.log(completed);
-        }
+        console.log(completed);
       } catch (error) {
         // Do nothing
       }
