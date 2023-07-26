@@ -10,14 +10,18 @@ if (url) {
     // Do nothing
     }
     if (response) {
-      const todos = JSON.parse(body);
-      const completed = {};
-      for (const todo of todos) {
-        if (todo.completed) {
-          completed[todo.userId] = completed[todo.userId] ? ++completed[todo.userId] : 1;
+      try {
+        const todos = JSON.parse(body);
+        const completed = {};
+        for (const todo of todos) {
+          if (todo.completed) {
+            completed[todo.userId] = completed[todo.userId] ? ++completed[todo.userId] : 1;
+          }
         }
+        console.log(completed);
+      } catch (error) {
+        // Do nothing
       }
-      console.log(completed);
     }
   });
 }
